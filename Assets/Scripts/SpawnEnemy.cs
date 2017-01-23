@@ -13,10 +13,12 @@ public class SpawnEnemy : MonoBehaviour {
     private float tmpSpawnTime;
 
 	void Update () {
-        if (tmpSpawnTime <= 0)
+        if (tmpSpawnTime <= 0.0f)
         {
             GameObject e = Instantiate(enemy);
-            e.transform.position = this.transform.position;
+            Vector3 playerPos = GameObject.Find("PlayerControler").transform.position;
+            Vector3 newPos = new Vector3(playerPos.x + 20, playerPos.y + 4, 0);
+            e.transform.position = newPos;
             tmpSpawnTime = cooldownSpawn;
         }
         else
